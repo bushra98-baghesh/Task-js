@@ -1,15 +1,17 @@
 class School {
-  constructor(schoolName) {
+  constructor(schoolName, sectionName) {
     this.schoolName = schoolName;
+    this.sectionName = sectionName;
   }
   get yourSchoolName() {
     return "your school name" + this.schoolName;
   }
 }
-class Section extends School {
-  constructor(schoolName, sectionName) {
-    super(schoolName);
-    this.sectionName = sectionName;
+class Section {
+  constructor(studentFirstName, studentLastName) {
+    this.School = new School();
+    this.studentFirstName = studentFirstName;
+    this.studentLastName = studentLastName;
   }
   get yourSectionName() {
     return "your section" + this.sectionName;
@@ -17,10 +19,13 @@ class Section extends School {
 }
 class Student {
   static count = 0;
-  constructor(schoolName, sectionName, FirstName, LastName) {
-    super(schoolName, sectionName);
-    this.FirstName = FirstName;
-    this.LastName = LastName;
+  constructor(schoolName, sectionName, studentFirstName, studentLastName) {
+    this.Section = new Section(
+      schoolName,
+      sectionName,
+      studentFirstName,
+      studentLastName
+    );
     Student.count++;
   }
   sayHello() {
