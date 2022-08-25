@@ -1,41 +1,52 @@
 class School {
-  constructor(schoolName, sectionName) {
+  constructor(schoolName) {
     this.schoolName = schoolName;
-    this.sectionName = sectionName;
   }
-  get yourSchoolName() {
-    return "your school name" + this.schoolName;
+  nameofschool() {
+    return this.schoolName;
   }
 }
 class Section {
-  constructor(studentFirstName, studentLastName) {
-    this.School = new School();
-    this.studentFirstName = studentFirstName;
-    this.studentLastName = studentLastName;
+  constructor(sectionNumber) {
+    this.sectionNumber = sectionNumber;
   }
-  get yourSectionName() {
-    return "your section" + this.sectionName;
+  numberofsections() {
+    return this.sectionNumber;
   }
 }
 class Student {
   static count = 0;
-  constructor(schoolName, sectionName, studentFirstName, studentLastName) {
-    this.Section = new Section(
-      schoolName,
-      sectionName,
-      studentFirstName,
-      studentLastName
-    );
+  constructor(studentFirstName, studentLastName, schoolName, sectionNumber) {
+    this.studentFirstName = studentFirstName;
+    this.studentLastName = studentLastName;
+    this.school = new School(schoolName);
+    this.section = new Section(sectionNumber);
     Student.count++;
   }
-  sayHello() {
-    return "hello" + " " + this.FirstName + " " + this.LastName;
+  describe() {
+    console.log(
+      " student name:" +
+        this.studentFirstName +
+        " \n student last name:" +
+        this.studentLastName +
+        "\n school name:" +
+        this.school.nameofschool() +
+        "\n section Number : " +
+        this.section.numberofsections()
+    );
   }
-  static countStudents = function () {
-    return this.count + " " + " students";
-  };
 }
 
-let student1 = new Student("ali", "mhd");
-console.log(student1);
-console.log(Student.countStudents());
+let students = [
+  new Student("ali", "mhd", "art", "3"),
+  new Student("sameh", "mhd", "programming", "2"),
+  new Student("samer", "mhd", "archeticture", "1"),
+  new Student("yara", "mhd", "art", "3"),
+];
+function getStudent(students) {
+  for (let student of students) {
+    student.describe();
+  }
+}
+getStudent(students);
+console.log(Student.count);
