@@ -1,27 +1,36 @@
 class School {
-  constructor(schoolName) {
+  constructor(schoolName, address, specification) {
     this.schoolName = schoolName;
+    this.address = address;
+    this.specification = specification;
+    this.studentsCount = 0;
   }
   nameofschool() {
     return this.schoolName;
   }
 }
 class Section {
-  constructor(sectionNumber) {
+  constructor(school, sectionNumber, studentsLimit) {
+    this.school = school;
     this.sectionNumber = sectionNumber;
+    this.studentsLimit = studentsLimit;
+    this.studentsCount = 0;
   }
   numberofsections() {
     return this.sectionNumber;
   }
 }
 class Student {
-  static count = 0;
-  constructor(studentFirstName, studentLastName, schoolName, sectionNumber) {
-    this.studentFirstName = studentFirstName;
-    this.studentLastName = studentLastName;
-    this.school = schoolName.nameofschool();
-    this.section = sectionNumber.numberofsections();
-    Student.count++;
+  static studentsCount = 0;
+  constructor(studentFirstName, studentLastName, school, section) {
+    this.section = section;
+    if (this.section.studentsLimit > this.section.studentsCount) {
+      this.section.studentsCount += 1;
+      this.studentFirstName = studentFirstName;
+      this.studentLastName = studentLastName;
+      this.school = school;
+      Student.studentsCount += 1;
+    }
   }
   describe() {
     console.log(
@@ -30,14 +39,22 @@ class Student {
         " \n student last name:" +
         this.studentLastName +
         "\n school name:" +
-        this.school +
+        this.school.schoolName +
         "\n section Number : " +
-        this.section
+        this.section.sectionNumber
     );
   }
 }
-let schools= [new School("art"), new School("programming"), new School("archeticture")];
-let sections= [new Section("1"), new Section("2"),new Section("3")];
+let schools = [
+  new School("art", "bla bla", "bla,bla"),
+  new School("programming", "bla bla", "bla,bla"),
+  new School("archeticture", "bla bla", "bla,bla"),
+];
+let sections = [
+  new Section(schools[0], "1", 3),
+  new Section(schools[1], "2", 3),
+  new Section(schools[2], "3", 3),
+];
 let students = [
   new Student("ali", "mhd", schools[0], sections[2]),
   new Student("sameh", "mhd", schools[1], sections[1]),
@@ -50,4 +67,4 @@ function getStudent(students) {
   }
 }
 getStudent(students);
-console.log(Student.count);
+console.log(Student.studentsCount);
