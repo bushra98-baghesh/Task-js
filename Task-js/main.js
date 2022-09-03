@@ -57,23 +57,14 @@ let schools = [
   new School("programming", "bla bla", "bla,bla"),
   new School("archeticture", "bla bla", "bla,bla"),
 ];
-let sections = [
-  new Section(schools[0], "1", 3),
-  new Section(schools[1], "2", 3),
-  new Section(schools[2], "3", 3),
-];
-let students = [
-  new Student("ali", "mhd", schools[0], sections[2]),
-  new Student("sameh", "mhd", schools[1], sections[1]),
-  new Student("samer", "mhd", schools[2], sections[0]),
-  new Student("yara", "mhd", schools[0], sections[1]),
-];
-function getStudent(students) {
-  for (let student of students) {
-    student.describe();
-  }
-}
-getStudent(students);
+let section1 = new Section(schools[0], "1", 3);
+let section2 = new Section(schools[1], "2", 3);
+let section3 = new Section(schools[2], "3", 3);
+
+let student1 = new Student("ali", "mhd", schools[0], section1);
+let student2 = new Student("sameh", "mhd", schools[1], section1);
+let student3 = new Student("samer", "mhd", schools[2], section2);
+let student4 = new Student("yara", "mhd", schools[0], section3);
+
 console.log(schools[0].students);
-console.log(schools[0].sections);
 console.log(schools[0].sectionWithStudents);
