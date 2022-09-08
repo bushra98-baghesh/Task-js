@@ -15,6 +15,8 @@ class School {
 class Section {
   constructor(school, sectionNumber, studentsLimit) {
     this.school = school;
+    if (!this.school.sections.includes(sectionNumber))
+      this.school.sections.push(sectionNumber);
     this.sectionNumber = sectionNumber;
     this.studentsLimit = studentsLimit;
     this.studentsCount = 0;
